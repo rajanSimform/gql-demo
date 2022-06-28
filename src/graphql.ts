@@ -26,6 +26,18 @@ export class OrderByParams {
     direction?: Nullable<string>;
 }
 
+export class CreateUserInput {
+    name: string;
+    email: string;
+    password: string;
+    role?: Nullable<string>;
+    createdAt?: Nullable<DateTime>;
+}
+
+export class UpdateUserInput {
+    id: number;
+}
+
 export class Donation {
     id: number;
     count: number;
@@ -43,6 +55,10 @@ export abstract class IQuery {
     abstract donation(id: number): Nullable<Donation> | Promise<Nullable<Donation>>;
 
     abstract totalDonations(): number | Promise<number>;
+
+    abstract users(): Nullable<User>[] | Promise<Nullable<User>[]>;
+
+    abstract user(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export abstract class IMutation {
@@ -51,10 +67,25 @@ export abstract class IMutation {
     abstract updateDonation(updateDonationInput: UpdateDonationInput): Donation | Promise<Donation>;
 
     abstract removeDonation(id: number): Nullable<Donation> | Promise<Nullable<Donation>>;
+
+    abstract createUser(createUserInput: CreateUserInput): User | Promise<User>;
+
+    abstract updateUser(updateUserInput: UpdateUserInput): User | Promise<User>;
+
+    abstract removeUser(id: number): Nullable<User> | Promise<Nullable<User>>;
 }
 
 export abstract class ISubscription {
     abstract totalUpdated(): number | Promise<number>;
+}
+
+export class User {
+    id: number;
+    name: string;
+    email: string;
+    password: string;
+    role?: Nullable<string>;
+    createdAt: DateTime;
 }
 
 export type DateTime = any;

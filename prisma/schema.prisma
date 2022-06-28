@@ -29,3 +29,14 @@ model Donation {
   messsage    String?
   team        String?
 }
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime? @default(now())
+  /// @Validator.MinLength(3)
+  name      String
+  /// @Validator.IsEmail()
+  email     String
+  password  String
+  role      String?
+}
