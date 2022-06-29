@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { DonationsModule } from './donations/donations.module';
 import { GraphQLDateTime } from 'graphql-iso-date';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { UserModule } from './user/user.module';
     }),
     DonationsModule,
     UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
